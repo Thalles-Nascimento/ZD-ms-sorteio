@@ -1,6 +1,7 @@
 package com.br.thallesnascimento.zenix_draw_ms_sorteio.dtos;
 
 import java.util.List;
+import java.util.Map;
 
-public record ListaDTOResponse(List<String> time1, List<String> time2, List<String> time3) {
+public record ListaDTOResponse(Map<String, List<String>> times) {
 }
