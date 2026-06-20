@@ -23,10 +23,15 @@ public class SorteioService {
 
             for (int j = 0; j < qtdJogadoresPorTime; j++) {
                 int numeroJogadores = listaDTO.jogadores().size();
-                int jogador = (int) (Math.random() * numeroJogadores);
+                int indice = (int) (Math.random() * numeroJogadores);
+                Jogadores jogadorSelecionado = listaDTO.jogadores().get(indice);
+//                List<Jogadores> melhoresJogadores = jogadoresPorTime
+//                        .stream()
+//                        .filter(jogadores -> jogadores.getForca() >= 7.5)
+//                        .toList();
 
-                jogadoresPorTime.add(listaDTO.jogadores().get(jogador));
-                listaDTO.jogadores().remove(jogador);
+                jogadoresPorTime.add(jogadorSelecionado);
+                listaDTO.jogadores().remove(indice);
 
             }
 
