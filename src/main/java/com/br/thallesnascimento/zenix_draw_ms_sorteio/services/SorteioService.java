@@ -32,7 +32,7 @@ public class SorteioService {
             times.put("time" + (i+1), jogadoresPorTime);
 
         }
-        return new ListaDTOResponse(times);
+        return new ListaDTOResponse(times, listaDTO.jogadores(), qtdJogadoresPorTime);
     }
 
 }
