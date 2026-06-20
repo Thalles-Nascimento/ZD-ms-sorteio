@@ -21,8 +21,12 @@ public class SorteioService {
             List<String> jogadoresPorTime = new ArrayList<>(qtdJogadoresPorTime);
 
             for (int j = 0; j < qtdJogadoresPorTime; j++) {
-                jogadoresPorTime.add(listaDTO.jogadores().getFirst());
-                listaDTO.jogadores().removeFirst();
+                int numeroJogadores = listaDTO.jogadores().size();
+                int jogador = (int) (Math.random() * numeroJogadores);
+
+                jogadoresPorTime.add(listaDTO.jogadores().get(jogador));
+                listaDTO.jogadores().remove(jogador);
+
             }
 
             times.put("time" + (i+1), jogadoresPorTime);
