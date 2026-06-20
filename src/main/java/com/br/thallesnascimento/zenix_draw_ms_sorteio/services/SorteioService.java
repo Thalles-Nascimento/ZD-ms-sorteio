@@ -1,9 +1,8 @@
 package com.br.thallesnascimento.zenix_draw_ms_sorteio.services;
 
-import com.br.thallesnascimento.zenix_draw_ms_sorteio.Jogadores;
-import com.br.thallesnascimento.zenix_draw_ms_sorteio.dtos.ListaDTO;
-import com.br.thallesnascimento.zenix_draw_ms_sorteio.dtos.ListaDTOResponse;
-import com.br.thallesnascimento.zenix_draw_ms_sorteio.enums.Posicao;
+import com.br.thallesnascimento.zenix_draw_ms_sorteio.models.entities.Jogadores;
+import com.br.thallesnascimento.zenix_draw_ms_sorteio.models.dtos.ListaDTO;
+import com.br.thallesnascimento.zenix_draw_ms_sorteio.models.dtos.ListaDTOResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
