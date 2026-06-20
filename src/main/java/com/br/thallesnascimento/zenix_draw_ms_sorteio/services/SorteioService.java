@@ -1,7 +1,9 @@
 package com.br.thallesnascimento.zenix_draw_ms_sorteio.services;
 
+import com.br.thallesnascimento.zenix_draw_ms_sorteio.Jogadores;
 import com.br.thallesnascimento.zenix_draw_ms_sorteio.dtos.ListaDTO;
 import com.br.thallesnascimento.zenix_draw_ms_sorteio.dtos.ListaDTOResponse;
+import com.br.thallesnascimento.zenix_draw_ms_sorteio.enums.Posicao;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,11 +16,11 @@ public class SorteioService {
 
     public ListaDTOResponse sortearTimes(ListaDTO listaDTO){
         int numeroTimes = listaDTO.numeroTimes();
-        Map<String, List<String>> times = new HashMap<>();
+        Map<String, List<Jogadores>> times = new HashMap<>();
 
         int qtdJogadoresPorTime = listaDTO.jogadores().size() / numeroTimes;
         for (int i = 0; i < numeroTimes; i++) {
-            List<String> jogadoresPorTime = new ArrayList<>(qtdJogadoresPorTime);
+            List<Jogadores> jogadoresPorTime = new ArrayList<>(qtdJogadoresPorTime);
 
             for (int j = 0; j < qtdJogadoresPorTime; j++) {
                 int numeroJogadores = listaDTO.jogadores().size();
