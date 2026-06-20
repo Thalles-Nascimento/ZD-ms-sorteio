@@ -11,5 +11,6 @@ import lombok.NoArgsConstructor;
 public class Jogadores {
     private String nome;
     private Posicao posicao;
+    private Float forca;
 
 }
