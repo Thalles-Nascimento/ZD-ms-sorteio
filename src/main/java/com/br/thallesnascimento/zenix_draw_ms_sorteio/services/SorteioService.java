@@ -5,10 +5,7 @@ import com.br.thallesnascimento.zenix_draw_ms_sorteio.models.dtos.ListaDTO;
 import com.br.thallesnascimento.zenix_draw_ms_sorteio.models.dtos.ListaDTOResponse;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class SorteioService {
@@ -25,15 +22,12 @@ public class SorteioService {
                 int numeroJogadores = listaDTO.jogadores().size();
                 int indice = (int) (Math.random() * numeroJogadores);
                 Jogadores jogadorSelecionado = listaDTO.jogadores().get(indice);
-//                List<Jogadores> melhoresJogadores = jogadoresPorTime
-//                        .stream()
-//                        .filter(jogadores -> jogadores.getForca() >= 7.5)
-//                        .toList();
 
                 jogadoresPorTime.add(jogadorSelecionado);
                 listaDTO.jogadores().remove(indice);
 
             }
+            jogadoresPorTime.sort(Comparator.comparing(Jogadores::getPosicao));
 
             times.put("time" + (i+1), jogadoresPorTime);
 
