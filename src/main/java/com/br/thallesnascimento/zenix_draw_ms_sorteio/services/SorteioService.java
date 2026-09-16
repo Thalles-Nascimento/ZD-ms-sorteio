@@ -4,6 +4,7 @@ import com.br.thallesnascimento.zenix_draw_ms_sorteio.models.dtos.ListaDTO;
 import com.br.thallesnascimento.zenix_draw_ms_sorteio.models.dtos.ListaDTOResponse;
 import com.br.thallesnascimento.zenix_draw_ms_sorteio.models.entities.Jogadores;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -15,6 +16,8 @@ public class SorteioService {
     private final Random random = new Random();
 
     public ListaDTOResponse sortearTimes(ListaDTO listaDTO){
+        log.info("[SERVICE]: SorteioService.sortearTimes(linha 18)");
+        long inicio = System.currentTimeMillis();
         int numeroTimes = listaDTO.numeroTimes();
         Map<String, List<Jogadores>> times = new HashMap<>();
 
@@ -36,7 +39,11 @@ public class SorteioService {
             times.put("time" + (i+1), jogadoresPorTime);
 
         }
-        return new ListaDTOResponse(times, listaDTO.jogadores(), qtdJogadoresPorTime);
+        long fim = System.currentTimeMillis();
+        ListaDTOResponse response = new ListaDTOResponse(times, listaDTO.jogadores(), qtdJogadoresPorTime);
+        log.info("Times formados. Tempo de execução: {}ms", (fim - inicio));
+        log.info("[SERVICE] Response: [Status = {}] => [Message = {}]", HttpStatus.CREATED, "Times criados");
+        return response;
     }
 
 }
