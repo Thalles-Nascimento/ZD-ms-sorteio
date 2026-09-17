@@ -16,8 +16,8 @@ public class SorteioService {
     private final Random random = new Random();
 
     public ListaDTOResponse sortearTimes(ListaDTO listaDTO){
-        log.info("[SERVICE]: SorteioService.sortearTimes(linha 18)");
         long inicio = System.currentTimeMillis();
+        log.info("[SERVICE]: SorteioService.sortearTimes(linha 18)");
         int numeroTimes = listaDTO.numeroTimes();
         Map<String, List<Jogadores>> times = new HashMap<>();
 
