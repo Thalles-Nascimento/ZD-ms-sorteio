@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Jogadores {
+public class Jogador {
     private String nome;
     private Posicao posicao;
     private Float forca;
