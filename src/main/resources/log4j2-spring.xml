@@ -23,7 +23,7 @@
             <AppenderRef ref="ConsoleAppender" />
         </Logger>
 
-        <Logger name="org.springframework.web" level="TRACE" additivity="false">
+        <Logger name="org.springframework.web" level="WARN" additivity="false">
             <AppenderRef ref="ConsoleAppender" />
         </Logger>
 
