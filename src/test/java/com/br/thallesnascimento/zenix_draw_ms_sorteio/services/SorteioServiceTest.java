@@ -13,6 +13,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 class SorteioServiceTest {
@@ -69,5 +70,17 @@ class SorteioServiceTest {
         assertThat(result.times().get("time1")).isSortedAccordingTo(Comparator.comparing(Jogador::getPosicao));
         assertThat(result.times().get("time2")).isSortedAccordingTo(Comparator.comparing(Jogador::getPosicao));
 
+    }
+
+    @Test
+    void naoDeveConterNulos() {
+        ListaDTOResponse result = sorteioService.sortearTimes(jogadores);
+        assertNotNull(result);
+        assertThat(result.times().get("time1"))
+                .isNotNull()
+                .isNotEmpty();
+        assertThat(result.times().get("time2"))
+                .isNotNull()
+                .isNotEmpty();
     }
 }
