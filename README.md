@@ -1,4 +1,4 @@
-# Zenix Draw · Sorteio
+# Zenix Draw · Sorteio (`ZD-ms-sorteio`)
 
 Microsserviço responsável por sortear jogadores em times para "peladas" (partidas informais de futebol).
 
@@ -6,19 +6,20 @@ Dado um conjunto de jogadores e a quantidade de times desejada, o serviço distr
 
 ## Sobre o projeto
 
-O `zenix-draw-ms-sorteio` faz parte do ecossistema **Zenix Draw**, que também inclui:
+Este repositório (`ZD-ms-sorteio` no GitHub) faz parte do ecossistema **Zenix Draw**. Hoje, no GitHub, ele convive com apenas mais um repositório publicado:
 
-- `zenix-draw-eureka` — servidor de service discovery (Netflix Eureka).
-- `zenix-draw-gateway` — API Gateway (Spring Cloud Gateway).
+- [`ZD-api-gateway`](https://github.com/Thalles-Nascimento/ZD-api-gateway) — API Gateway (Spring Cloud Gateway).
 
-Hoje, no entanto, o `ms-sorteio` funciona de forma **standalone**: ele expõe sua API REST diretamente e pode ser consumido sem depender dos outros dois serviços.
+Há também um serviço de service discovery (Netflix Eureka) em desenvolvimento localmente na máquina do autor, mas ele ainda **não foi versionado/publicado no GitHub**, então não é considerado parte do ecossistema disponível publicamente por enquanto.
+
+Hoje, o `ms-sorteio` funciona de forma **standalone**: ele expõe sua API REST diretamente e pode ser consumido sem depender do Gateway.
 
 ## Status do projeto / arquitetura atual
 
-Este projeto ainda está em desenvolvimento, então a integração com o Gateway e o Eureka ainda não está totalmente amadurecida. Vale deixar claro o estado atual:
+Este projeto ainda está em desenvolvimento, então a integração com o Gateway (e, futuramente, com o Eureka) ainda não está totalmente amadurecida. Vale deixar claro o estado atual:
 
-- **Eureka**: o `zenix-draw-eureka` já existe como servidor de descoberta, mas o `ms-sorteio` **não possui** o client do Eureka (`spring-cloud-starter-netflix-eureka-client`) e, portanto, **não se registra** nele. Ele não é hoje descoberto dinamicamente por outros serviços.
-- **Gateway**: o `zenix-draw-gateway` já tem uma rota configurada apontando para este serviço:
+- **Eureka**: existe um serviço de descoberta em desenvolvimento local, mas ele ainda não foi publicado no GitHub. O `ms-sorteio` **não possui** o client do Eureka (`spring-cloud-starter-netflix-eureka-client`) e, portanto, **não se registra** em nenhum servidor de descoberta hoje.
+- **Gateway**: o `ZD-api-gateway` já tem uma rota configurada apontando para este serviço:
 
   ```yaml
   routes:
@@ -30,7 +31,7 @@ Este projeto ainda está em desenvolvimento, então a integração com o Gateway
 
   Só que esse roteamento é feito por **URI estática** (`http://localhost:8081/`), e não por descoberta de serviço via Eureka (ex.: `lb://ms-sorteio`). Ou seja, o Gateway consegue encaminhar chamadas para o `ms-sorteio`, mas de forma fixa/manual, não dinâmica.
 
-Em resumo: os três serviços já convivem no mesmo workspace, mas a integração real entre eles (registro no Eureka + roteamento dinâmico pelo Gateway) ainda é um próximo passo, não algo já consolidado.
+Em resumo: a integração real entre o `ms-sorteio` e o Gateway (e, no futuro, o registro via Eureka) ainda é um próximo passo, não algo já consolidado.
 
 ## Tecnologias utilizadas
 
@@ -114,7 +115,7 @@ O serviço sobe na porta **8081**, com o endpoint disponível em `http://localho
 
 ### Executando via Gateway (opcional)
 
-Como descrito em [Status do projeto](#status-do-projeto--arquitetura-atual), também é possível subir o `zenix-draw-gateway` (porta `8080`) e acessar o serviço através dele em `http://localhost:8080/api/v1/sorteio`, já que existe uma rota estática configurada para isso. O `zenix-draw-eureka`, por enquanto, não é necessário para esse fluxo funcionar, já que o `ms-sorteio` ainda não se registra nele.
+Como descrito em [Status do projeto](#status-do-projeto--arquitetura-atual), também é possível subir o [`ZD-api-gateway`](https://github.com/Thalles-Nascimento/ZD-api-gateway) (porta `8080`) e acessar o serviço através dele em `http://localhost:8080/api/v1/sorteio`, já que existe uma rota estática configurada para isso.
 
 ## Testes
 
